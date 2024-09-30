@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React, { Children } from "react";
+import { TouchableOpacity } from "react-native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { colors } from "../utils/colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -15,11 +15,15 @@ const RouteNavigators = () => {
     return (
       <TouchableOpacity
         style={{
-          width: 50,
-          height: 50,
+          width: 65,
+          height: 65,
           backgroundColor: colors.purple,
           justifyContent: "center",
           alignItems: "center",
+          borderRadius: 33,
+          marginTop: -8,
+          borderWidth: 3,
+          borderColor: "#fff",
         }}
       >
         <Entypo name="list" size={32} color="#FFD00C" />

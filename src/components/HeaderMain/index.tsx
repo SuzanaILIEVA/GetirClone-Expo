@@ -4,7 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { colors } from "../../utils/colors";
 
-const index = () => {
+const Index = () => {
   return (
     <View style={styles.headerMain}>
       <View style={styles.headerOne}>
@@ -45,4 +45,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

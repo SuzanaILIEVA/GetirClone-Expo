@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import CategoryItem from "../CategoryItem";
+import CategoryItem from "../CategoryItem/Index";
 import categoriesGetir from "../../../assets/categoriesGetir";
 import { Category } from "../../models";
 
 //MainCategories
-const index = () => {
+const Index = () => {
   const [categories, setCategories] = useState<Category[]>(categoriesGetir);
   return (
     <View>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default index;
+export default Index;

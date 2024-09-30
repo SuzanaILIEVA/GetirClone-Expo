@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // BannerCarousel
 const { width, height } = Dimensions.get("window");
-const index = () => {
+const Index = () => {
   const [banners, setBanners] = useState([
     "https://cdn.getir.com/misc/611e55d33ea65bef40f9ba05_banner_tr_1629378026496.jpeg",
     "https://cdn.getir.com/misc/621784419e62143ed76eef01_banner_tr_1645969386292.jpeg",
@@ -29,4 +29,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

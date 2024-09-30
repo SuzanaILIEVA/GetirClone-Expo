@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
-import styles from "../CategoryItem";
+import styles from "./styles";
 import { colors } from "../../utils/colors";
 import { Category } from "../../models";
 
@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get("window");
 type categoryItemProps = {
   item: Category;
 };
-const index = ({ item }: categoryItemProps) => {
+const Index = ({ item }: categoryItemProps) => {
   return (
     <TouchableOpacity
       style={{
@@ -35,4 +35,4 @@ const index = ({ item }: categoryItemProps) => {
   );
 };
 
-export default index;
+export default Index;

@@ -1,12 +1,10 @@
 import { ScrollView } from "react-native";
 import React from "react";
-import HeaderMain from "../../components/HeaderMain";
-import BannerCarousel from "../../components/BannerCarousel";
-import CategoryItem from "../../components/CategoryItem";
-import MainCategories from "../../components/MainCategories";
-
+import HeaderMain from "../../components/HeaderMain/Index";
+import BannerCarousel from "../../components/BannerCarousel/Index";
+import MainCategories from "../../components/MainCategories/Index";
 // HomeScreen
-const index = () => {
+const HomeScreen = () => {
   return (
     <ScrollView
       stickyHeaderIndices={[0]}
@@ -18,4 +16,4 @@ const index = () => {
     </ScrollView>
   );
 };
-export default index;
+export default HomeScreen;
