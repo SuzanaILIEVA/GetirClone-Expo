@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles";
 import { colors } from "../../utils/colors";
 import { Category } from "../../models";
+import { useNavigation } from "@react-navigation/native";
 
 //CategoryItem
 
@@ -11,6 +12,7 @@ type categoryItemProps = {
   item: Category;
 };
 const Index = ({ item }: categoryItemProps) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={{
@@ -21,6 +23,7 @@ const Index = ({ item }: categoryItemProps) => {
         justifyContent: "space-between",
         marginTop: 10,
       }}
+      onPress={() => navigation.navigate("CategoryDetails", { category: item })}
     >
       <Image
         style={{ width: width * 0.18, height: width * 0.18, borderRadius: 10 }}
