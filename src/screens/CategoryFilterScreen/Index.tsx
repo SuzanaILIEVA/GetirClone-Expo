@@ -4,6 +4,8 @@ import CategoryFiltering from "../../components/CategoryFiltering/Index";
 import { Category } from "../../models";
 import TypeFiltering from "../../components/TypeFiltering/Index";
 
+import ProductContainer from "../../components/ProductContainer/Index";
+
 const Index = (props: any) => {
   const [category, setCategory] = useState<Category>(
     props.route.params.category
@@ -12,6 +14,8 @@ const Index = (props: any) => {
     <ScrollView>
       <CategoryFiltering category={category} />
       <TypeFiltering />
+
+      <ProductContainer />
     </ScrollView>
   );
 };

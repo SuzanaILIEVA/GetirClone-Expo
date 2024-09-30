@@ -31,6 +31,7 @@ const TypeBox = ({
           margin: 10,
           marginVertical: 15,
           height: height * 0.044,
+          
         },
         item === active
           ? { backgroundColor: colors.purple }
@@ -62,6 +63,15 @@ const TypeFiltering = () => {
         width: "100%",
         backgroundColor: "#fff",
         height: height * 0.072,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 4,
+          height: 8,
+        },
+        shadowOpacity: 0.32,
+        shadowRadius: 5.46,
+        borderBottomWidth: 2,
+        borderBottomColor: "#EEEE",
       }}
       showsHorizontalScrollIndicator={false}
       bounces={true}
