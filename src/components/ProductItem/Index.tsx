@@ -2,12 +2,15 @@ import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Product } from "../../models";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
 const ProductItem = ({ item }: { item: Product }) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetail", { product: item })}
       style={{
         width: width * 0.28,
         marginTop: 12,
