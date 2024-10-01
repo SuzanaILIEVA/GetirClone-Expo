@@ -1,9 +1,12 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Product } from "../../models";
 import ImageCarousel from "../../components/ImageCarousel/Index";
 
 import { colors } from "../../utils/colors";
+import DetailBox from "../../components/DetailBox/Index";
+import DetailProperty from "../../components/DetailProperty/Index";
+import CartButton from "../../components/CartButton/Index";
 
 export default function ProductDetailScreen(props: any) {
   const [product, setProduct] = useState<Product>();
@@ -17,8 +20,28 @@ export default function ProductDetailScreen(props: any) {
     return <ActivityIndicator color={colors.purple} />;
   }
   return (
-    <View>
-      <ImageCarousel images={product?.images} />
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
+        <ImageCarousel images={product.images} />
+        <DetailBox
+          price={product.fiyat}
+          name={product.name}
+          quantity={product.miktar}
+        />
+        <Text
+          style={{
+            paddingHorizontal: 10,
+            paddingVertical: 13,
+            color: "#808B99",
+            fontWeight: "600",
+            fontSize: 14,
+          }}
+        >
+          Detaylar
+        </Text>
+        <DetailProperty />
+      </ScrollView>
+      <CartButton product={product} />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity } from "react-native";
+import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
@@ -8,7 +8,10 @@ import ProductDetailScreen from "../screens/ProductDetailScreen/Index";
 import Entypo from "@expo/vector-icons/Entypo";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import CartScreen from "../screens/CartScreen/Index";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
+const { width, height } = Dimensions.get("window");
 const Stack = createStackNavigator();
 
 const MyStack = ({ navigation, route }: { navigation: any; route: any }) => {
@@ -20,7 +23,7 @@ const MyStack = ({ navigation, route }: { navigation: any; route: any }) => {
   const tabHiddenRoutes = ["ProductDetail"];
 
   React.useLayoutEffect(() => {
-    const routeName = getFocusedRouteNameFromRoute(route);
+    const routeName: string | undefined = getFocusedRouteNameFromRoute(route);
     console.log("Route Name is ", routeName);
     if (tabHiddenRoutes.includes(routeName)) {
       console.log("Kapat ", routeName);
@@ -63,6 +66,49 @@ const MyStack = ({ navigation, route }: { navigation: any; route: any }) => {
               Ürünler
             </Text>
           ),
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("CartScreen")}
+              style={{
+                width: width * 0.22,
+                height: 33,
+                backgroundColor: "white",
+                marginRight: width * 0.03,
+                borderRadius: 9,
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={require("../../assets/cart.png")}
+                style={{ width: 23, height: 23, marginLeft: 6 }}
+              />
+              <View style={{ height: 33, width: 3, backgroundColor: "#fff" }} />
+
+              <View
+                style={{
+                  flex: 1,
+                  height: 33,
+                  backgroundColor: "#F3EFEF",
+                  borderTopRightRadius: 9,
+                  borderBottomRightRadius: 9,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    color: colors.purple,
+                    fontWeight: "bold",
+                    fontSize: 13,
+                  }}
+                >
+                  <Text>{"\u20BA"}</Text>
+                  23.00
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ),
           headerTitleAlign: "center",
         }}
       />
@@ -95,10 +141,45 @@ const MyStack = ({ navigation, route }: { navigation: any; route: any }) => {
           ),
         }}
       />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: colors.purple },
+          headerTintColor: "#fff",
+          headerBackTitleVisible: false,
+
+          headerTitle: () => (
+            <Text style={{ fontSize: 20, color: "#fff", fontWeight: "bold" }}>
+              Sepetim
+            </Text>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ margin: 12 }}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicons name="close" size={28} color="#fff" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ margin: 12 }}>
+              <Ionicons name="trash-sharp" size={26} color="#fff" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };
 
-export default function HomeNavigator({ navigation, route }) {
+export default function HomeNavigator({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
   return <MyStack navigation={navigation} route={route} />;
 }
