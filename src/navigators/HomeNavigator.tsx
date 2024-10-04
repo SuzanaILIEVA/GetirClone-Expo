@@ -20,7 +20,7 @@ const MyStack = ({ navigation, route }: { navigation: any; route: any }) => {
   // tabHiddenRoutes Dizisi: Hangi ekranlarda tabBar'ın gizleneceğini belirler.
   // navigation.setOptions: Ekranlar arasında geçiş yapıldığında tabBar'ın gizlenmesi veya gösterilmesi için kullanılır.
   // getFocusedRouteNameFromRoute: Aktif olan ekranın adını alarak tabHiddenRoutes ile karşılaştırır.
-  const tabHiddenRoutes = ["ProductDetail"];
+  const tabHiddenRoutes = ["ProductDetail", "CartScreen"];
 
   React.useLayoutEffect(() => {
     const routeName: string | undefined = getFocusedRouteNameFromRoute(route);

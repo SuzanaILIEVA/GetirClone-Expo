@@ -21,17 +21,9 @@ const ProductItem = ({ item }: { item: Product }) => {
     >
       <View
         style={{
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 5,
-            height: 8,
-          },
-          shadowOpacity: 0.32,
-          shadowRadius: 5.46,
-
-          elevation: 9,
-          borderWidth: 0.3,
-          borderColor: "gray",
+          elevation: 7,
+          borderWidth: 0.03,
+          borderColor: "lightgrey",
           borderRadius: 10,
         }}
       >
