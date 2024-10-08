@@ -3,10 +3,16 @@ import React from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Product } from "../../models";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/CartActions";
 
 const { width, height } = Dimensions.get("window");
 
-const ProductItem = ({ item }: { item: Product }) => {
+type ProductItemType = {
+  item: Product;
+  addItemToCart: (a: Product) => void;
+};
+const ProductItem = ({ item, addItemToCart }: ProductItemType) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -68,7 +74,8 @@ const ProductItem = ({ item }: { item: Product }) => {
         {item.miktar}
       </Text>
 
-      <View
+      <TouchableOpacity
+        onPress={() => addItemToCart(item)}
         style={{
           width: 30,
           height: 30,
@@ -86,9 +93,16 @@ const ProductItem = ({ item }: { item: Product }) => {
         }}
       >
         <Entypo name="plus" size={24} color="#5D3EBD" />
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
 
-export default ProductItem;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    addItemToCart: (product: Product) =>
+      dispatch(actions.addToCart({ product, quantity: 1 })),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductItem);

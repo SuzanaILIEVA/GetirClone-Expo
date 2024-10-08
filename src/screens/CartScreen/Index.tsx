@@ -11,18 +11,32 @@ import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/CartItem/Index";
 import { colors } from "../../utils/colors";
 import ProductItem from "../../components/ProductItem/Index";
+import cartItems from "../../redux/reducers/cartItem";
+import { connect } from "react-redux";
+import { Product } from "../../models";
 
 const { width, height } = Dimensions.get("window");
 
-const CartScreen = () => {
+const CartScreen = ({
+  cartItems,
+}: {
+  cartItems: { product: Product; quantity: number }[];
+}) => {
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ marginBottom: height * 0.03, flex: 1 }}>
         <FlatList
-          data={productsGetir.slice(0, 3)}
-          renderItem={({ item }) => <CartItem product={item} />}
+          data={cartItems}
+          renderItem={({ item }) => <CartItem product={item.product} />}
         />
-        <Text style={{ padding: 15, fontWeight: "bold", color: colors.purple }}>
+        <Text
+          style={{
+            padding: 15,
+            fontWeight: "bold",
+            color: colors.purple,
+            fontSize: 18,
+          }}
+        >
           Önerilen Ürünler
         </Text>
 
@@ -97,4 +111,11 @@ const CartScreen = () => {
   );
 };
 
-export default CartScreen;
+const mapStateToProps = (state: any) => {
+  const { cartItems } = state;
+  return {
+    cartItems: cartItems,
+  };
+};
+
+export default connect(mapStateToProps, null)(CartScreen);

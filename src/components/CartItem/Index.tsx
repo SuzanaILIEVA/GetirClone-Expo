@@ -27,10 +27,22 @@ const CartItem = ({ product }: CartItemProps) => {
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            style={{ width: height * 0.09, height: height * 0.09 }}
-            source={{ uri: product.image }}
-          />
+          <View
+            style={{
+              borderWidth: 0.45,
+              borderBlockColor: "lightgray",
+              borderRadius: 8,
+              padding: 5,
+            }}
+          >
+            <Image
+              style={{
+                width: height * 0.09,
+                height: height * 0.09,
+              }}
+              source={{ uri: product.image }}
+            />
+          </View>
           <View style={{ marginLeft: 8 }}>
             <Text
               style={{
