@@ -32,7 +32,7 @@ const DetailProperty = () => {
       >
         <Text
           style={{
-            color: index == 0 ? "black" : "#687482",
+            color: index == 0 ? "#4E4E4E" : "#687482",
             fontWeight: index === 0 ? "500" : "600",
             fontSize: index === 0 ? 13 : 15,
           }}

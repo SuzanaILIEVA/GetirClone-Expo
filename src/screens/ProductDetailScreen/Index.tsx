@@ -41,7 +41,7 @@ export default function ProductDetailScreen(props: any) {
         </Text>
         <DetailProperty />
       </ScrollView>
-      <CartButton product={product} />
+      <CartButton item={product} />
     </View>
   );
 }

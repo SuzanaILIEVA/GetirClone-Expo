@@ -1,15 +1,26 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { Product } from "../../models";
 import { colors } from "../../utils/colors";
 import Entypo from "@expo/vector-icons/Entypo";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/CartActions";
 
 type CartItemProps = {
   product: Product;
+  quantity: number;
+  removeFromCart: () => void;
+  addToCart: () => void;
 };
 
 const { width, height } = Dimensions.get("window");
-const CartItem = ({ product }: CartItemProps) => {
+const CartItem = ({
+  product,
+  quantity,
+  removeFromCart,
+  addToCart,
+}: CartItemProps) => {
+  console.log("Rendering CartItem with product:", product);
   return (
     <View style={{ width: "100%", backgroundColor: "#fff" }}>
       <View
@@ -97,11 +108,14 @@ const CartItem = ({ product }: CartItemProps) => {
             elevation: 10,
           }}
         >
-          <View style={{ flex: 1, alignItems: "center" }}>
+          <TouchableOpacity
+            onPress={() => removeFromCart(product)}
+            style={{ flex: 1, alignItems: "center" }}
+          >
             <Text style={{ fontWeight: "bold" }}>
               <Entypo name="minus" size={18} color={colors.purple} />
             </Text>
-          </View>
+          </TouchableOpacity>
           <View
             style={{
               flex: 1,
@@ -112,18 +126,38 @@ const CartItem = ({ product }: CartItemProps) => {
             }}
           >
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
-              2
+              {quantity}
             </Text>
           </View>
-          <View style={{ flex: 1, alignItems: "center" }}>
+          <TouchableOpacity
+            // onPress={() => {
+            //   console.log("Product being added to cart: ", product); // Burada product'ın doğru olup olmadığını kontrol et
+            //   addToCart(product);
+            // }}
+            style={{ flex: 1, alignItems: "center" }}
+          >
             <Text>
               <Entypo name="plus" size={18} color={colors.purple} />
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    removeFromCart: (product: Product) => {
+      console.log("Removing product:", product);
+      dispatch(actions.removeFromCart(product));
+    },
+
+    // addToCart: (product: Product) => {
+    //   console.log("Adding product:", product);
+    //   dispatch(actions.addToCart(product));
+    // },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CartItem);

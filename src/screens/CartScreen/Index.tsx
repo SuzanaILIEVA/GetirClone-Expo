@@ -5,7 +5,7 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/CartItem/Index";
@@ -22,12 +22,31 @@ const CartScreen = ({
 }: {
   cartItems: { product: Product; quantity: number }[];
 }) => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const getProductPrice = (product: Product) => {
+    let total = 0;
+
+    cartItems.forEach((item) => {
+      total += item.product.fiyat * item.quantity;
+      setTotalPrice(total);
+    });
+
+    cartItems.length ? null : setTotalPrice(0);
+  };
+
+  useEffect(() => {
+    getProductPrice();
+  }, [cartItems]);
+
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ marginBottom: height * 0.03, flex: 1 }}>
         <FlatList
           data={cartItems}
-          renderItem={({ item }) => <CartItem product={item.product} />}
+          renderItem={({ item }) => (
+            <CartItem product={item.product} quantity={item.quantity} />
+          )}
         />
         <Text
           style={{
@@ -103,7 +122,7 @@ const CartScreen = ({
             }}
           >
             <Text>{"\u20BA"}</Text>
-            23,00
+            {totalPrice.toFixed(2)}
           </Text>
         </View>
       </View>

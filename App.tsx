@@ -10,6 +10,21 @@ import { Provider } from "react-redux";
 const prefix = Linking.createURL("/");
 
 export default function App() {
+  const linking = {
+    prefixed: [prefix],
+    config: {
+      screens: {
+        Search: {
+          screens: {
+            CartScreen: {
+              path: "cartScreen",
+            },
+          },
+        },
+      },
+    },
+  };
+
   return (
     <Provider store={store}>
       <NavigationContainer>
