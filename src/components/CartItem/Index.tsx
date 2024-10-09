@@ -129,13 +129,7 @@ const CartItem = ({
               {quantity}
             </Text>
           </View>
-          <TouchableOpacity
-            // onPress={() => {
-            //   console.log("Product being added to cart: ", product); // Burada product'ın doğru olup olmadığını kontrol et
-            //   addToCart(product);
-            // }}
-            style={{ flex: 1, alignItems: "center" }}
-          >
+          <TouchableOpacity style={{ flex: 1, alignItems: "center" }}>
             <Text>
               <Entypo name="plus" size={18} color={colors.purple} />
             </Text>
@@ -152,11 +146,6 @@ const mapDispatchToProps = (dispatch: any) => {
       console.log("Removing product:", product);
       dispatch(actions.removeFromCart(product));
     },
-
-    // addToCart: (product: Product) => {
-    //   console.log("Adding product:", product);
-    //   dispatch(actions.addToCart(product));
-    // },
   };
 };
 

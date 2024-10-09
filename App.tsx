@@ -10,14 +10,19 @@ import { Provider } from "react-redux";
 const prefix = Linking.createURL("/");
 
 export default function App() {
+  //* npx uri-scheme open exp://192.168.1.33:8081/--/CartScreen --android => herhangi bir ekrana yonlendirme
+  //*npx uri-scheme open exp://192.168.1.33:8081/--/CartScreen/nabeeeeerrr --android => parametre gondererek yonlendirme
   const linking = {
-    prefixed: [prefix],
+    prefixes: [prefix],
     config: {
       screens: {
         Search: {
           screens: {
             CartScreen: {
-              path: "cartScreen",
+              path: "CartScreen/:message",
+              parse: {
+                message: (message: string) => `mesajimiz-${message}`,
+              },
             },
           },
         },
@@ -27,7 +32,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <RouteNavigators />
       </NavigationContainer>
     </Provider>

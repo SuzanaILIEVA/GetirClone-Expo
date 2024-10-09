@@ -19,10 +19,15 @@ const { width, height } = Dimensions.get("window");
 
 const CartScreen = ({
   cartItems,
+  route,
 }: {
+  route: any;
   cartItems: { product: Product; quantity: number }[];
 }) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  //**** */
+  console.log("route parametrelerim : ", route.params);
 
   const getProductPrice = (product: Product) => {
     let total = 0;
